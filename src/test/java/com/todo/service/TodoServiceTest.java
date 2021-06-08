@@ -3,7 +3,6 @@ package com.todo.service;
 import com.todo.model.TodoEntity;
 import com.todo.model.TodoRequest;
 import com.todo.repository.TodoRepository;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.AdditionalAnswers;
@@ -15,8 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
@@ -26,11 +24,12 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class TodoServiceTest {
 
+    @InjectMocks
+    private TodoService todoService;
+
     @Mock
     private TodoRepository todoRepository;
 
-    @InjectMocks
-    private TodoService todoService;
 
     @Test
     void add() {
@@ -51,21 +50,22 @@ class TodoServiceTest {
     @Test
     void findById() {
 
-        Optional<TodoEntity> optional = Optional.of(
-                TodoEntity.builder()
-                        .id(123L)
-                        .title("Find By Id Test Title")
-                        .build());
+        TodoEntity todo = new TodoEntity();
+        todo.setTitle("test");
+        todo.setId(123L);
+        todo.setOrder(0L);
+        todo.setCompleted(false);
+        Optional<TodoEntity> expected = Optional.of(todo);
 
-        given(todoRepository.findById(anyLong())).willReturn(optional);
+        given(this.todoRepository.findById(anyLong()))
+                .willReturn(expected);
 
-        TodoEntity actual = todoService.findById(123L);
-        TodoEntity expect = optional.get();
+        TodoEntity actual = this.todoService.findById(123L);
 
-        assertEquals(expect.getId(), actual.getId());
-        assertEquals(expect.getTitle(), actual.getTitle());
-        assertEquals(expect.getOrder(), actual.getOrder());
-        assertEquals(expect.getCompleted(), actual.getCompleted());
+        assertEquals(actual.getId(), 123L);
+        assertEquals(actual.getOrder(), 0L);
+        assertFalse(actual.getCompleted());
+        assertEquals(actual.getTitle(), "test");
 
     }
 
@@ -85,10 +85,11 @@ class TodoServiceTest {
 
         List<TodoEntity> todoEntities =mock(List.class);
 
-        TodoEntity expect = TodoEntity.builder()
-                                            .id(1L)
-                                            .title("Find All Test Title")
-                                            .build();
+        TodoEntity expect = new TodoEntity();
+        expect.setTitle("test");
+        expect.setId(123L);
+        expect.setOrder(0L);
+        expect.setCompleted(false);
 
         todoEntities.add(expect);
 
