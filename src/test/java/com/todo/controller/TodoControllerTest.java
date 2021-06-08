@@ -35,17 +35,17 @@ class TodoControllerTest {
 
         //테스트 시작 전 초기 데이터 초기화 생성
         this.expect = TodoEntity.builder()
-                                    .id(1L)
                                     .title("Test Title")
                                     .build();
     }
+
+
     @Test
     void add() throws Exception{
         when(todoService.add(any(TodoRequest.class)))
                 .then((i) -> {
                     TodoRequest request = i.getArgument(0, TodoRequest.class);
                     return TodoEntity.builder()
-                            .id(expect.getId())
                             .title(expect.getTitle())
                             .build();
                 });
