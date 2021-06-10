@@ -1,5 +1,6 @@
-package com.todo.model;
+package com.todo.web.dto;
 
+import com.todo.domain.TodoEntity;
 import lombok.Data;
 
 @Data

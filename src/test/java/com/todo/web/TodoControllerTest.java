@@ -1,8 +1,8 @@
-package com.todo.controller;
+package com.todo.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.todo.model.TodoEntity;
-import com.todo.model.TodoRequest;
+import com.todo.domain.TodoEntity;
+import com.todo.web.dto.TodoRequest;
 import com.todo.service.TodoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

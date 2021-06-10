@@ -1,8 +1,8 @@
 package com.todo.service;
 
-import com.todo.model.TodoEntity;
-import com.todo.model.TodoRequest;
-import com.todo.repository.TodoRepository;
+import com.todo.domain.TodoEntity;
+import com.todo.web.dto.TodoRequest;
+import com.todo.domain.repository.TodoRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.AdditionalAnswers;
