@@ -24,7 +24,7 @@ public class TodoController {
 
     @PostMapping
     public ResponseEntity<TodoResponse> add(@RequestBody TodoRequest request) {
-        log.info("ADD");
+        log.info("ADD REQUEST");
         if (ObjectUtils.isEmpty(request.getTitle()))
             return ResponseEntity.badRequest().build();
 
@@ -38,13 +38,13 @@ public class TodoController {
 
     @GetMapping("{id}")
     public ResponseEntity<TodoResponse> findById(@PathVariable Long id) {
-        log.info("FIND BY ID");
+        log.info("FIND BY ID REQUEST");
         return ResponseEntity.ok(new TodoResponse(todoService.findById(id)));
     }
 
     @GetMapping
     public ResponseEntity<List<TodoResponse>> findAll() {
-        log.info("FIND ALL");
+        log.info("FIND ALL REQUEST");
         List<TodoEntity> todoEntityList = todoService.findAll();
 
         return ResponseEntity.ok(todoEntityList.stream().map(TodoResponse::new).collect(Collectors.toList()));
@@ -52,20 +52,20 @@ public class TodoController {
 
     @PatchMapping("{id}")
     public ResponseEntity<TodoResponse> updateById(@PathVariable Long id, @RequestBody TodoRequest request) {
-        log.info("UPDATE BY ID");
+        log.info("UPDATE BY ID REQUEST");
         return ResponseEntity.ok(new TodoResponse(todoService.updateById(id, request)));
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id) {
-        log.info("DELETE BY ID");
+        log.info("DELETE BY ID REQUEST");
         return todoService.deleteById(id) == 1 ?
                 ResponseEntity.ok().build() : ResponseEntity.noContent().build();
     }
 
     @DeleteMapping
     public ResponseEntity<?> deleteAll() {
-        log.info("DELETE ALL");
+        log.info("DELETE ALL REQUEST");
         todoService.deleteAll();
         return ResponseEntity.ok().build();
     }
