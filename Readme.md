@@ -10,7 +10,20 @@
 * Junit5 + Mockito
 * Intellij IDE
 
+　
 
+### 커밋메시지 가이드
+#### [git-styleguide](https://udacity.github.io/git-styleguide/) - Udacity git commit message style guide
+
+* feat: A new feature
+* fix: A bug fix
+* docs: Changes to documentation
+* style: Formatting, missing semi colons, etc; no code change
+* refactor: Refactoring production code
+* test: Adding tests, refactoring test; no production code change
+* chore: Updating build tasks, package manager configs, etc; no production code change
+
+　
 
 ### 필요기능 :seedling:
 
@@ -22,8 +35,12 @@
 5. todo 리스트 목록 중 특정 아이템을 삭제  
 6. todo 리스트 전체 목록을 삭제  
 ```
+ 
+
+　
 
 
+　
 
 ## 프로젝트 실행 :bookmark:
 
@@ -61,7 +78,9 @@ cd rest-api-todo-list
 
 
 
+　
 
+　
 
 
 ## APIs
